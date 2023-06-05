@@ -1,0 +1,40 @@
+.disapproved {
+  background-color: rgb(233, 82, 82);
+  width: 100px;
+}
+
+.approved {
+  background-color: papayawhip;
+  width: 100px;
+}
+
+.imgStudent {
+  width: 50%;
+}
+
+.cardStudent {
+  width: 15%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 3%;
+}
+.headerFullName{
+  width: 100%;
+  background-color: steelblue;
+  color: white;
+  justify-content: center;
+}
+
+.buttonAdd{
+  margin-left: 3%;
+}
+
+.containerStudent{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}

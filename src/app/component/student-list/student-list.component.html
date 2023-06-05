@@ -1,0 +1,82 @@
+<h1>Students </h1>
+<div class="containerStudent">
+  <button class="buttonAdd" mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon" (click)="toggleFormCreate()">
+    <mat-icon>plus_one</mat-icon>
+  </button>
+  <br>
+  <div *ngIf="showFormCreate" >
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+      <div class="form">
+        <mat-form-field>
+          <mat-label>First Name: </mat-label>
+          <input required matInput id="firstName" type="text" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Last Name: </mat-label>
+          <input required matInput id="lastName" type="text" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>ID: </mat-label>
+          <input required matInput id="id" type="text" formControlName="id">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Inscription date: </mat-label>
+          <input required matInput id="inscriptionDate" type="text" formControlName="inscriptionDate">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Avatar url: </mat-label>
+          <input required matInput id="avatarUrl" type="text" formControlName="avatarUrl">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Score: </mat-label>
+          <input required matInput id="score" type="number" formControlName="score">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Stars: </mat-label>
+          <input required matInput id="stars" type="number" formControlName="stars">
+        </mat-form-field>
+        <button mat-raised-button  type="submit" color="primary" [disabled]="!studentForm.valid">Primary</button>
+      </div>
+    </form>
+  </div>
+  <ul>
+    <div class="cardStudent">
+      <mat-card *ngFor="let student of students;let indexOfelement=index;">
+        <mat-card-header class="headerFullName">
+          {{student.firstName}} {{student.lastName}}
+        </mat-card-header>
+        <mat-card-content>
+          <li> ID : {{student.id}}</li>
+          <li> Inscription date : {{student.inscriptionDate.toLocaleString()}}</li>
+          <li> Score : {{student.score.toFixed(1)}}</li>
+          <li>
+            <div class="approved" *ngIf="student.score >= 3.0; else scoreElse"> Approved</div>
+            <ng-template #scoreElse>
+              <div class="disapproved">Disapproved</div>
+            </ng-template>
+          </li>
+          <li>
+            <div [ngSwitch]="student.score">
+              <p *ngSwitchCase="5">⭐️⭐️⭐️⭐️⭐️</p>
+              <p *ngSwitchCase="4">⭐️⭐️⭐️⭐️</p>
+              <p *ngSwitchCase="3">⭐️⭐️⭐️</p>
+              <p *ngSwitchCase="2">⭐️⭐️</p>
+              <p *ngSwitchCase="1">⭐️</p>
+              <p *ngSwitchDefault>you haven't stars</p>
+            </div>
+          </li>
+        </mat-card-content>
+        <div class="imgStudent">
+          <img mat-card-image [src]="student.avatarUrl" alt="  ">
+        </div>
+        <mat-card-actions>
+          <div class="example-button-container">
+            <button mat-fab color="warn" (click)="deleteStudent(indexOfelement)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </ul>
+</div>
