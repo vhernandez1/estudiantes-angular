@@ -16,8 +16,8 @@ export class StudentListComponent implements OnInit {
     id: new FormControl(''),
     inscriptionDate: new FormControl(new Date()),
     avatarUrl: new FormControl(''),
-    score: new FormControl(new Number()),
-    stars: new FormControl(new Number())
+    score: new FormControl(0),
+    stars: new FormControl(0)
   });
 
 
